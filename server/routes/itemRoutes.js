@@ -1,10 +1,15 @@
 const express = require('express')
-
+const Item = require('../models/itemModel')
 const router = express.Router()
 
 
-router.get('/', (req, res) => {
-  res.send("Got all items")
+router.get('/', async (req, res) => {
+  try {
+    const items = await Item.find({})
+    res.status(200).json(items)
+  } catch (err) {
+    res.status(400).json({err: err.message})
+  }
 })
 
 router.get('/:id', (req, res) => {

@@ -11,11 +11,11 @@ const getItems = async (req, res) => {
   }
 }
 
-const getSpecificItem = async (req, res) => {
+const getSpecificItems = async (req, res) => {
   const id = req.params.id
 
   try {
-    const item = await Item.find({_id: id})
+    const item = await Item.findById(id)
     res.status(200).json(item)
   } catch (err) {
     res.status(400).json({err: err.message})
@@ -36,4 +36,4 @@ const createItem = async (req, res) => {
 
 
 
-module.exports = { getItems, getSpecificItem, createItem }
+module.exports = { getItems, getSpecificItems, createItem }

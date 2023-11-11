@@ -23,6 +23,7 @@ const Home = () => {
 
   return (
     <div>
+      HELLO WELCOME TO THE HOME PAGE
       {items && items.map(item => (
         <div>
           {item.name} {item.color}

@@ -16,7 +16,9 @@ const getSpecificItems = async (req, res) => {
 
   try {
     const item = await Item.findById(id)
-    res.status(200).json(item)
+    const itemsArray = Array.isArray(item) ? item : [item]
+
+    res.status(200).json(itemsArray)
   } catch (err) {
     res.status(400).json({err: err.message})
   }

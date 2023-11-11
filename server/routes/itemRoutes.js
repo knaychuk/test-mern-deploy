@@ -1,24 +1,17 @@
 const express = require('express')
-const Item = require('../models/itemModel')
+
 const router = express.Router()
 
+const { getItems, getSpecificItem, createItem } = require('../controllers/itemController')
 
-router.get('/', async (req, res) => {
-  try {
-    const items = await Item.find({})
-    res.status(200).json(items)
-  } catch (err) {
-    res.status(400).json({err: err.message})
-  }
-})
+const { getPeople, createPerson } = require('../controllers/personController')
 
-router.get('/:id', (req, res) => {
-  res.send("Got specific item")
-})
 
-router.post('/', (req, res) => {
-  res.send("Post new item")
-})
+router.get('/getItems', getItems)
+
+router.get('/getItem/:id', getSpecificItem)
+
+router.post('/createItem', createItem)
 
 router.delete('/:id', (req, res) => {
   res.send("Delete specific item")
@@ -27,5 +20,9 @@ router.delete('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
   res.send("Update specific item")
 })
+
+router.get('/getPeople', getPeople) 
+
+router.post('/createPerson', createPerson)
 
 module.exports = router
